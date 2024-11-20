@@ -1,60 +1,105 @@
-let currentPage = 0;
-const pages = [];
 
 
-function logSelection(event) {
-    const selection = event.target.value.substring(
-      event.target.selectionStart,
-      event.target.selectionEnd,
-    );
-    console.log(selection);
+document.addEventListener("DOMContentLoaded", function () {
+  // Ellenőrizzük, hogy létezik-e editor-container
+  const editorContainer = document.getElementById("editor-container");
+
+  if (editorContainer) {
+      // Az első szövegdobozra kattintás figyelése
+      const firstEditor = editorContainer.querySelector(".editor-box p");
+
+      if (firstEditor) {
+          firstEditor.addEventListener("click", function() {
+              if (firstEditor.innerText === "Új oldal tartalom...") {
+                  firstEditor.innerText = ""; // Ha az alap szöveg van, töröljük
+              }
+          });
+      }
+
+      // Funkció, amely új szövegdobozokat hoz létre
+      function addNewEditorBox() {
+          // Létrehozunk egy új szövegdobozt
+          const newEditorBox = document.createElement("div");
+          newEditorBox.classList.add("editor-box");
+
+          // Létrehozzuk a szövegdobozhoz tartozó <p> elemet
+          const newParagraph = document.createElement("p");
+          newParagraph.contentEditable = "true"; // Beállítjuk, hogy szerkeszthető legyen
+          newParagraph.innerText = "Új oldal tartalom..."; // Kezdő szöveg
+
+          // Az új szövegdobozhoz kattintás eseményt adunk hozzá
+          newParagraph.addEventListener("click", function() {
+              if (newParagraph.innerText === "Új oldal tartalom...") {
+                  newParagraph.innerText = ""; // Ha a kezdő szöveg van benne, töröljük
+              }
+          });
+
+          newEditorBox.appendChild(newParagraph);
+
+          // A szövegdoboz hozzáadása a konténerhez
+          editorContainer.appendChild(newEditorBox);
+      }
+
+      // Funkció az összes szöveg törlésére
+      function clearAllText() {
+          const allParagraphs = document.querySelectorAll('p');
+          allParagraphs.forEach(p => {
+              p.innerText = ""; // Az összes szövegdoboz tartalmát töröljük
+          });
+      }
+
+      // Az align-left gombra kattintáskor új szövegdoboz hozzáadása
+      document.getElementById("align-left").addEventListener("click", function() {
+          addNewEditorBox();  // Új szövegdoboz hozzáadása
+      });
+
+      // Az align-right gombra kattintáskor új szövegdoboz hozzáadása
+      document.getElementById("align-right").addEventListener("click", function() {
+          addNewEditorBox(); // Új szövegdoboz hozzáadása
+      });
+
+      // Az align-center gombra kattintáskor az összes szöveg törlése
+      document.getElementById("align-center").addEventListener("click", function() {
+          const confirmation = confirm("Biztosan törölni szeretnéd az összes szöveget? Ez nem visszavonható.");
+          if (confirmation) {
+              clearAllText();  // Az összes szöveg törlése az összes szövegdobozból
+          }
+      });
+  } else {
+      console.error("Az editor-container elem nem található a fő oldalon.");
   }
-const textarea = document.querySelector("#editor");
-textarea.addEventListener("select", logSelection);
-
-// A szövegkezelés
-const editor = document.getElementById('editor');
+});
 
 
 
-// Betűméret módosítása a kijelölt szövegre
+/****************************************TOOLBAR*********************************************** */
+
+
+
+
+
+// FONT beállítások
 document.getElementById("font-size").addEventListener("change", function () {
-  const selectedFontSize = this.value; // Kiválasztott betűméret
-  const selection = window.getSelection(); // Aktuális szövegkijelölés
+    const selectedFontSize = this.value;
+    const selection = window.getSelection();
 
-  if (selection.rangeCount > 0) {
-      const range = selection.getRangeAt(0); // Az első kijelölt tartomány
-      const span = document.createElement("span"); // Új span elem
-      span.style.fontSize = selectedFontSize; // Betűméret alkalmazása
+    if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        const span = document.createElement("span");
+        span.style.fontSize = selectedFontSize;
 
-      const content = range.extractContents(); // Kijelölt szöveg eltávolítása a DOM-ból
-      span.appendChild(content); // A tartalom hozzáadása a span elemhez
-      range.insertNode(span); // A span elem visszahelyezése a tartomány helyére
+        const content = range.extractContents();
+        span.appendChild(content);
+        range.insertNode(span);
 
-      // Visszaállítjuk a kijelölést
-      const newRange = document.createRange();
-      newRange.selectNodeContents(span);
-      selection.removeAllRanges();
-      selection.addRange(newRange);
-  }
+        const newRange = document.createRange();
+        newRange.selectNodeContents(span);
+        selection.removeAllRanges();
+        selection.addRange(newRange);
+    }
 });
 
-document.getElementById("editor").addEventListener("input", function () {
-  const editor = document.getElementById("editor");
-  if (editor.innerHTML.trim() === "") {
-      // Ha az editor üres, helyezzünk be egy alapértelmezett <p>-t
-      editor.innerHTML = "<p><br></p>";
-      const range = document.createRange();
-      const sel = window.getSelection();
-      range.setStart(editor.childNodes[0], 0);
-      range.collapse(true);
-      sel.removeAllRanges();
-      sel.addRange(range);
-  }
-});
-
-//FÉLKÖVÉR BETŰTÍPUZÁS KI ÉS BE KAPCSOLÁS
-// Félkövér formázás
+// BOLD - Félkövér
 document.getElementById("bold").addEventListener("click", function () {
   const selection = window.getSelection(); // Aktuális szövegkijelölés
 
@@ -82,57 +127,3 @@ document.getElementById("bold").addEventListener("click", function () {
     }
   }
 });
-
-
-
-/***********OLDAL KEZELÉS *****************************/
-
-function addNewPage() {
-  const pageContainer = document.getElementById('page-container');
-  const newPage = document.createElement('div');
-  newPage.classList.add('page');
-  newPage.contentEditable = "true";  // A lap szerkeszthető
-  newPage.innerHTML = `<p>Új oldal tartalom...</p>`;  // Alap szöveg
-
-  pageContainer.appendChild(newPage);  // Hozzáadjuk a konténerhez
-  pages.push(newPage);  // Elmentjük a lapot
-  currentPage = pages.length - 1;  // Az új lapra lépünk
-}
-
-// Lapozás balra (előző oldal)
-function goToPreviousPage() {
-  if (currentPage > 0) {
-      currentPage--;
-      updateVisiblePage();
-  }
-}
-
-// Lapozás jobbra (következő oldal)
-function goToNextPage() {
-  if (currentPage < pages.length - 1) {
-      currentPage++;
-      updateVisiblePage();
-  }
-}
-
-// Frissíti a látható oldalt (csak az aktuális oldalt jeleníti meg)
-function updateVisiblePage() {
-  const pageContainer = document.getElementById('page-container');
-  const pagesElements = pageContainer.getElementsByClassName('page');
-
-  // Minden oldalt elrejtünk
-  for (let i = 0; i < pagesElements.length; i++) {
-      pagesElements[i].style.display = 'none';
-  }
-
-  // Az aktuális oldalt megjelenítjük
-  pagesElements[currentPage].style.display = 'block';
-}
-
-// Eseményfigyelők a gombokhoz
-document.getElementById('align-left').addEventListener('click', goToPreviousPage);
-document.getElementById('align-center').addEventListener('click', addNewPage);
-document.getElementById('align-right').addEventListener('click', goToNextPage);
-
-// Kezdeti oldal beállítása
-updateVisiblePage();
