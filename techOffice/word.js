@@ -1,3 +1,7 @@
+let currentPage = 0;
+const pages = [];
+
+
 function logSelection(event) {
     const selection = event.target.value.substring(
       event.target.selectionStart,
@@ -7,6 +11,10 @@ function logSelection(event) {
   }
 const textarea = document.querySelector("#editor");
 textarea.addEventListener("select", logSelection);
+
+// A szövegkezelés
+const editor = document.getElementById('editor');
+
 
 
 // Betűméret módosítása a kijelölt szövegre
@@ -74,3 +82,57 @@ document.getElementById("bold").addEventListener("click", function () {
     }
   }
 });
+
+
+
+/***********OLDAL KEZELÉS *****************************/
+
+function addNewPage() {
+  const pageContainer = document.getElementById('page-container');
+  const newPage = document.createElement('div');
+  newPage.classList.add('page');
+  newPage.contentEditable = "true";  // A lap szerkeszthető
+  newPage.innerHTML = `<p>Új oldal tartalom...</p>`;  // Alap szöveg
+
+  pageContainer.appendChild(newPage);  // Hozzáadjuk a konténerhez
+  pages.push(newPage);  // Elmentjük a lapot
+  currentPage = pages.length - 1;  // Az új lapra lépünk
+}
+
+// Lapozás balra (előző oldal)
+function goToPreviousPage() {
+  if (currentPage > 0) {
+      currentPage--;
+      updateVisiblePage();
+  }
+}
+
+// Lapozás jobbra (következő oldal)
+function goToNextPage() {
+  if (currentPage < pages.length - 1) {
+      currentPage++;
+      updateVisiblePage();
+  }
+}
+
+// Frissíti a látható oldalt (csak az aktuális oldalt jeleníti meg)
+function updateVisiblePage() {
+  const pageContainer = document.getElementById('page-container');
+  const pagesElements = pageContainer.getElementsByClassName('page');
+
+  // Minden oldalt elrejtünk
+  for (let i = 0; i < pagesElements.length; i++) {
+      pagesElements[i].style.display = 'none';
+  }
+
+  // Az aktuális oldalt megjelenítjük
+  pagesElements[currentPage].style.display = 'block';
+}
+
+// Eseményfigyelők a gombokhoz
+document.getElementById('align-left').addEventListener('click', goToPreviousPage);
+document.getElementById('align-center').addEventListener('click', addNewPage);
+document.getElementById('align-right').addEventListener('click', goToNextPage);
+
+// Kezdeti oldal beállítása
+updateVisiblePage();
