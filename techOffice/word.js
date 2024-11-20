@@ -44,3 +44,33 @@ document.getElementById("editor").addEventListener("input", function () {
       sel.addRange(range);
   }
 });
+
+//FÉLKÖVÉR BETŰTÍPUZÁS KI ÉS BE KAPCSOLÁS
+// Félkövér formázás
+document.getElementById("bold").addEventListener("click", function () {
+  const selection = window.getSelection(); // Aktuális szövegkijelölés
+
+  if (selection.rangeCount > 0) {
+    const range = selection.getRangeAt(0); // Az első kijelölt tartomány
+    const parentNode = range.commonAncestorContainer.parentNode;
+
+    // Ellenőrizzük, hogy a kijelölt szöveg már félkövér-e
+    if (parentNode.tagName === "STRONG") {
+      // Ha igen, eltávolítjuk a félkövér formázást
+      const content = range.extractContents();
+      parentNode.parentNode.replaceChild(content, parentNode);
+    } else {
+      // Ha nem, alkalmazzuk a félkövér formázást
+      const strong = document.createElement("strong"); // Félkövér elem
+      const content = range.extractContents(); // Kijelölt szöveg eltávolítása a DOM-ból
+      strong.appendChild(content); // A tartalom hozzáadása a strong elemhez
+      range.insertNode(strong); // A strong elem visszahelyezése a tartomány helyére
+
+      // Visszaállítjuk a kijelölést
+      const newRange = document.createRange();
+      newRange.selectNodeContents(strong);
+      selection.removeAllRanges();
+      selection.addRange(newRange);
+    }
+  }
+});
