@@ -6,16 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-.container {
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 400px;
-    text-align: center;
-    margin: auto;
+    position: relative;
 }
 
 h1 {
@@ -59,4 +50,27 @@ button:disabled {
 a {
     text-decoration: none;
     color: #0b0808;
+}
+
+.container {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.container1 {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    text-align: center;
+    height: 5vh;
+    width: 10vh;
+    margin: 0;
+    background-image: url(../img/postit-scrabble-to-do.jpg);
 }
