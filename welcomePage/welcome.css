@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f3f4f6;
-    margin: 0;
+    background-image: url(../img/slova-kraski-tekst-ateist.webp);
     padding: 0;
     display: flex;
     justify-content: center;
@@ -14,8 +13,9 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 300px;
+    width: 400px;
     text-align: center;
+    margin: auto;
 }
 
 h1 {
@@ -23,15 +23,18 @@ h1 {
 }
 
 p {
-    margin-bottom: 15px;
+    font-size: 25px;
     color: #000000;
+    font-size: 25px;
+    padding-bottom: 20PX;
 }
 
 label {
     display: block;
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 20px;
     color: #333;
+    text-align: left;
 }
 
 button {
@@ -52,7 +55,8 @@ button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
-a{
+
+a {
     text-decoration: none;
     color: #0b0808;
 }
