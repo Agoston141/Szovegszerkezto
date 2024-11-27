@@ -127,3 +127,30 @@ document.getElementById("bold").addEventListener("click", function () {
     }
   }
 });
+
+
+/***********************************EXPORT/SAVE GOMB *********************************************/
+/****************************************Ask the user what should be the name of the document. - kérdezze meg, milyen nevet szeretne a fájlnévnek.*******************************************************/
+
+
+/********************Download engine - letöltő motor (txt) */
+document.getElementById("align-left").addEventListener("click", function () {
+    const paragraphs = document.querySelectorAll("#editor-container p");
+    let textContent = "";
+    paragraphs.forEach(p => {
+        textContent += p.innerText + "\n"; 
+    });
+
+    // Megkérdezzük a fájl nevét
+    const fileName = prompt("Add meg a fájl nevét:", "A dokumentumod neve...");
+    if (fileName) {
+        const blob = new Blob([textContent], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName + ".txt"; // Hozzáadjuk a fájl nevet a kiterjesztéssel
+        link.click();
+        URL.revokeObjectURL(link.href);
+    } else {
+        alert("A fájl mentése megszakítva."); // Ha a felhasználó nem adott nevet
+    }
+});
