@@ -111,16 +111,17 @@ document.getElementById("align-left").addEventListener("click", function () {
     // Megkérdezzük a fájl nevét
     const fileName = prompt("Add meg a fájl nevét:", "A dokumentumod neve...");
     if (fileName) {
-        const blob = new Blob([textContent], { type: "text/plain" });
+        const blob = new Blob([textContent], { type: "application/rtf" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
-        link.download = fileName + ".txt"; // Hozzáadjuk a fájl nevet a kiterjesztéssel
+        link.download = fileName + "."; // Hozzáadjuk a fájl nevet a kiterjesztéssel
         link.click();
         URL.revokeObjectURL(link.href);
     } else {
         alert("A fájl mentése megszakítva."); // Ha a felhasználó nem adott nevet
     }
 });
+//EHHEZ MAJD KELL EGY WORD/DOCX megoldás, egyelőre ez nincsen meg.
 
 
 /***************************FONT FAMILY *************************************************/
