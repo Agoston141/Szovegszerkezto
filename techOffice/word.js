@@ -78,34 +78,65 @@ document.getElementById("font-size").addEventListener("change", function () {
     }
 });
 
+
+//Teljes szoveg törlese.
 document.getElementById("align-center").addEventListener("click", function () {
     const confirmation = confirm("Biztosan törölni szeretnéd az összes szöveget?");
     if (confirmation) {
         const editorContainer = document.getElementById("editor-container");
 
-        // Törli az összes szerkesztőelemet
-        while (editorContainer.firstChild) {
-            editorContainer.removeChild(editorContainer.firstChild);
+        // Mentjük az id="editor" elemet, hogy ne törlődjön
+        const editorElement = document.getElementById("editor");
+
+        // Töröljük az összes editor-box-ot, kivéve az id="editor" elemét
+        let firstChild = editorContainer.firstChild;
+        while (firstChild) {
+            if (firstChild !== editorElement) {
+                editorContainer.removeChild(firstChild);
+            }
+            firstChild = editorContainer.firstChild;
         }
 
-        // Egy új, üres szövegdoboz automatikus létrehozása
-        const newEditorBox = document.createElement("div");
-        newEditorBox.classList.add("editor-box");
+        // Az editor-container-be csak új editor-box-okat adunk hozzá
+        // Létrehozzuk az első új editor-box-ot
+        const newEditorBox1 = document.createElement("div");
+        newEditorBox1.classList.add("editor-box");
 
-        const newParagraph = document.createElement("p");
-        newParagraph.contentEditable = "true";
-        newParagraph.innerText = "Új oldal tartalom...";
+        const newParagraph1 = document.createElement("p");
+        newParagraph1.contentEditable = "true";
+        newParagraph1.innerText = "Új oldal tartalom...";
 
-        newParagraph.addEventListener("click", function () {
-            if (newParagraph.innerText === "Új oldal tartalom...") {
-                newParagraph.innerText = "";
+        newParagraph1.addEventListener("click", function () {
+            if (newParagraph1.innerText === "Új oldal tartalom...") {
+                newParagraph1.innerText = "";
             }
         });
 
-        newEditorBox.appendChild(newParagraph);
-        editorContainer.appendChild(newEditorBox);
+        newEditorBox1.appendChild(newParagraph1);
+        editorContainer.appendChild(newEditorBox1);
+
+        // Létrehozzuk a második új editor-box-ot
+        const newEditorBox2 = document.createElement("div");
+        newEditorBox2.classList.add("editor-box");
+
+        const newParagraph2 = document.createElement("p");
+        newParagraph2.contentEditable = "true";
+        newParagraph2.innerText = "Új oldal tartalom...";
+
+        newParagraph2.addEventListener("click", function () {
+            if (newParagraph2.innerText === "Új oldal tartalom...") {
+                newParagraph2.innerText = "";
+            }
+        });
+
+        newEditorBox2.appendChild(newParagraph2);
+        editorContainer.appendChild(newEditorBox2);
     }
 });
+
+
+
+
 
 
 /***********************************EXPORT/SAVE GOMB *********************************************/
