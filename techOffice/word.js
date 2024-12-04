@@ -69,7 +69,7 @@ document.getElementById("font-size").addEventListener("change", function () {
 // BOLD - Félkövér
 document.getElementById("bold").addEventListener("click", function () {
     const selection = window.getSelection();
-
+    strong.style.cssText = window.getComputedStyle(parentNode).cssText;
     if (selection.rangeCount > 0) {
         const range = selection.getRangeAt(0);
         const selectedText = range.toString(); // Kijelölt szöveg
@@ -97,10 +97,11 @@ document.getElementById("bold").addEventListener("click", function () {
             selection.removeAllRanges();
             selection.addRange(newRange);
         }
-    }
-    strong.style.cssText = window.getComputedStyle(parentNode).cssText;
-});
+        
 
+    }
+    
+});
 
 
 
@@ -220,30 +221,7 @@ document.getElementById("bold").addEventListener("click", function () {
     }
 });
 
-// Dőlt formázás alkalmazása
-document.getElementById("italic").addEventListener("click", function () {
-    const selection = window.getSelection();
 
-    if (selection.rangeCount > 0) {
-        const range = selection.getRangeAt(0);
-        const parentNode = range.commonAncestorContainer.parentNode;
-
-        if (parentNode.tagName === "EM" || parentNode.tagName === "I") {
-            const content = range.extractContents();
-            parentNode.parentNode.replaceChild(content, parentNode);
-        } else {
-            const em = document.createElement("em");
-            const content = range.extractContents();
-            em.appendChild(content);
-            range.insertNode(em);
-
-            const newRange = document.createRange();
-            newRange.selectNodeContents(em);
-            selection.removeAllRanges();
-            selection.addRange(newRange);
-        }
-    }
-});
 
 // Betűméret változtatása
 document.getElementById("font-size").addEventListener("change", function () {
