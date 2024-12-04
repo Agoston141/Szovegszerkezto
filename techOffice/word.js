@@ -1,13 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const boldButton = document.getElementById("bold");
-    if (boldButton) {
-        boldButton.addEventListener("click", function () {
-            // Itt jön a bold funkció
-        });
-    } else {
-        console.error("A 'bold' gomb nem található az oldalon.");
-    }
-});
+    // Ellenőrizzük, hogy létezik-e editor-container
+    const editorContainer = document.getElementById("editor-container");
 
     if (editorContainer) {
         // Funkció, amely új szövegdobozokat hoz létre
@@ -46,7 +39,7 @@ const themebutton = document.querySelector("#ThemeButton")
 themebutton.addEventListener("click",()=>{
     const body= document.querySelector("body")
     const toolbar = document.querySelector(".toolbar")
-    const editor = document.querySelector("#editor")
+    const editor = document.querySelector(".editor")
     body.style.backgroundColor="#1d1d1d"
     toolbar.style.backgroundColor="#534f4f"
     editor.style.backgroundColor="#746c6c"
@@ -219,16 +212,3 @@ document.getElementById("font-family").addEventListener("change", function () {
     }
 });
 
-<<<<<<< HEAD
-=======
-//Téma gomb
-const themebutton = document.querySelector("#ThemeButton"); // Első deklaráció
-
-// Ha újra hivatkozni kell rá, ne deklaráld újra:
-themebutton.addEventListener("click", () => {
-    const body = document.querySelector("body");
-    const toolbar = document.querySelector(".toolbar");
-    body.style.backgroundColor = "#1d1d1d";
-    toolbar.style.backgroundColor = "#534f4f";
-});
->>>>>>> 482a051859457abf2b01bf27bbdc86c7ba140eb9
