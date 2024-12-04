@@ -273,8 +273,18 @@ document.getElementById("font-family").addEventListener("change", function () {
         range.insertNode(span);
 
         const newRange = document.createRange();
-        newRange.selectNodeContents(span);
+        newRange.selectNodeContents(span);  
         selection.removeAllRanges();
         selection.addRange(newRange);
     }
 });
+
+//Téma gomb
+const themebutton = document.querySelector("#ThemeButton")
+
+themebutton.addEventListener("click",()=>{
+    const body= document.querySelector("body")
+    const toolbar = document.querySelector(".toolbar")
+    body.style.backgroundColor="#1d1d1d"
+    toolbar.style.backgroundColor="534f4f"
+})
