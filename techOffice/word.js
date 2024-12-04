@@ -66,45 +66,6 @@ document.getElementById("font-size").addEventListener("change", function () {
     }
 });
 
-// BOLD - Félkövér
-document.getElementById("bold").addEventListener("click", function () {
-    const selection = window.getSelection();
-    strong.style.cssText = window.getComputedStyle(parentNode).cssText;
-    if (selection.rangeCount > 0) {
-        const range = selection.getRangeAt(0);
-        const selectedText = range.toString(); // Kijelölt szöveg
-        if (selectedText.length === 0) return; // Ha nincs kijelölt szöveg, kilépünk
-
-        const parentNode = range.commonAncestorContainer.parentNode;
-
-        // Ellenőrizzük, hogy a szöveg már félkövér-e
-        if (parentNode.tagName === "STRONG") {
-            // Félkövér formázás eltávolítása
-            const content = document.createTextNode(selectedText);
-            parentNode.parentNode.replaceChild(content, parentNode);
-        } else {
-            // Félkövér formázás alkalmazása
-            const strong = document.createElement("strong");
-            strong.appendChild(document.createTextNode(selectedText));
-
-            // A meglévő szöveg helyettesítése a formázott szöveggel
-            range.deleteContents();
-            range.insertNode(strong);
-
-            // Új kijelölés beállítása
-            const newRange = document.createRange();
-            newRange.selectNodeContents(strong);
-            selection.removeAllRanges();
-            selection.addRange(newRange);
-        }
-        
-
-    }
-    
-});
-
-
-
 /***********************************EXPORT/SAVE GOMB *********************************************/
 /****************************************Ask the user what should be the name of the document. - kérdezze meg, milyen nevet szeretne a fájlnévnek.*******************************************************/
 
