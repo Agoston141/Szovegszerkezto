@@ -78,6 +78,36 @@ document.getElementById("font-size").addEventListener("change", function () {
     }
 });
 
+document.getElementById("align-center").addEventListener("click", function () {
+    const confirmation = confirm("Biztosan törölni szeretnéd az összes szöveget?");
+    if (confirmation) {
+        const editorContainer = document.getElementById("editor-container");
+
+        // Törli az összes szerkesztőelemet
+        while (editorContainer.firstChild) {
+            editorContainer.removeChild(editorContainer.firstChild);
+        }
+
+        // Egy új, üres szövegdoboz automatikus létrehozása
+        const newEditorBox = document.createElement("div");
+        newEditorBox.classList.add("editor-box");
+
+        const newParagraph = document.createElement("p");
+        newParagraph.contentEditable = "true";
+        newParagraph.innerText = "Új oldal tartalom...";
+
+        newParagraph.addEventListener("click", function () {
+            if (newParagraph.innerText === "Új oldal tartalom...") {
+                newParagraph.innerText = "";
+            }
+        });
+
+        newEditorBox.appendChild(newParagraph);
+        editorContainer.appendChild(newEditorBox);
+    }
+});
+
+
 /***********************************EXPORT/SAVE GOMB *********************************************/
 /****************************************Ask the user what should be the name of the document. - kérdezze meg, milyen nevet szeretne a fájlnévnek.*******************************************************/
 
