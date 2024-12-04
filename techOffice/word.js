@@ -33,6 +33,18 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         console.error("Az editor-container elem nem található a fő oldalon.");
     }
+    //Téma gomb
+const themebutton = document.querySelector("#ThemeButton")
+
+themebutton.addEventListener("click",()=>{
+    const body= document.querySelector("body")
+    const toolbar = document.querySelector(".toolbar")
+    const editor = document.querySelector("#editor")
+    body.style.backgroundColor="#1d1d1d"
+    toolbar.style.backgroundColor="#534f4f"
+    editor.style.backgroundColor="#746c6c"
+})
+
 });
 
 
@@ -156,32 +168,6 @@ document.getElementById("font-family").addEventListener("change", function () {
 });
 
 // Félkövér formázás alkalmazása
-document.getElementById("bold").addEventListener("click", function () {
-    const selection = window.getSelection();
-
-    if (selection.rangeCount > 0) {
-        const range = selection.getRangeAt(0);
-        const parentNode = range.commonAncestorContainer.parentNode;
-
-        // Ha már félkövér, eltávolítjuk a formázást
-        if (parentNode.tagName === "STRONG") {
-            const content = range.extractContents();
-            parentNode.parentNode.replaceChild(content, parentNode);
-        } else {
-            // Ha nincs félkövér formázás, alkalmazzuk
-            const strong = document.createElement("strong");
-            const content = range.extractContents();
-            strong.appendChild(content);
-            range.insertNode(strong);
-
-            const newRange = document.createRange();
-            newRange.selectNodeContents(strong);
-            selection.removeAllRanges();
-            selection.addRange(newRange);
-        }
-    }
-});
-
 
 
 // Betűméret változtatása
@@ -226,12 +212,3 @@ document.getElementById("font-family").addEventListener("change", function () {
     }
 });
 
-//Téma gomb
-const themebutton = document.querySelector("#ThemeButton")
-
-themebutton.addEventListener("click",()=>{
-    const body= document.querySelector("body")
-    const toolbar = document.querySelector(".toolbar")
-    body.style.backgroundColor="#1d1d1d"
-    toolbar.style.backgroundColor="534f4f"
-})

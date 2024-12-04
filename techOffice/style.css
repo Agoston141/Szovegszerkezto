@@ -43,7 +43,8 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     border-color: white;
     outline: none;
-    transition: opacity 1s ease, transform 1s ease   
+    transition: opacity 1s ease, transform 1s ease;
+    background-color: #ffffff;
 }
 
 #editor-container {
