@@ -66,36 +66,6 @@ document.getElementById("font-size").addEventListener("change", function () {
     }
 });
 
-// BOLD - Félkövér
-document.getElementById("bold").addEventListener("click", function () {
-  const selection = window.getSelection(); // Aktuális szövegkijelölés
-
-  if (selection.rangeCount > 0) {
-    const range = selection.getRangeAt(0); // Az első kijelölt tartomány
-    const parentNode = range.commonAncestorContainer.parentNode;
-
-    // Ellenőrizzük, hogy a kijelölt szöveg már félkövér-e
-    if (parentNode.tagName === "STRONG") {
-      // Ha igen, eltávolítjuk a félkövér formázást
-      const content = range.extractContents();
-      parentNode.parentNode.replaceChild(content, parentNode);
-    } else {
-      // Ha nem, alkalmazzuk a félkövér formázást
-      const strong = document.createElement("strong"); // Félkövér elem
-      const content = range.extractContents(); // Kijelölt szöveg eltávolítása a DOM-ból
-      strong.appendChild(content); // A tartalom hozzáadása a strong elemhez
-      range.insertNode(strong); // A strong elem visszahelyezése a tartomány helyére
-
-      // Visszaállítjuk a kijelölést
-      const newRange = document.createRange();
-      newRange.selectNodeContents(strong);
-      selection.removeAllRanges();
-      selection.addRange(newRange);
-    }
-  }
-});
-
-
 /***********************************EXPORT/SAVE GOMB *********************************************/
 /****************************************Ask the user what should be the name of the document. - kérdezze meg, milyen nevet szeretne a fájlnévnek.*******************************************************/
 
@@ -212,30 +182,7 @@ document.getElementById("bold").addEventListener("click", function () {
     }
 });
 
-// Dőlt formázás alkalmazása
-document.getElementById("italic").addEventListener("click", function () {
-    const selection = window.getSelection();
 
-    if (selection.rangeCount > 0) {
-        const range = selection.getRangeAt(0);
-        const parentNode = range.commonAncestorContainer.parentNode;
-
-        if (parentNode.tagName === "EM" || parentNode.tagName === "I") {
-            const content = range.extractContents();
-            parentNode.parentNode.replaceChild(content, parentNode);
-        } else {
-            const em = document.createElement("em");
-            const content = range.extractContents();
-            em.appendChild(content);
-            range.insertNode(em);
-
-            const newRange = document.createRange();
-            newRange.selectNodeContents(em);
-            selection.removeAllRanges();
-            selection.addRange(newRange);
-        }
-    }
-});
 
 // Betűméret változtatása
 document.getElementById("font-size").addEventListener("change", function () {
