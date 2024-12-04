@@ -68,32 +68,40 @@ document.getElementById("font-size").addEventListener("change", function () {
 
 // BOLD - Félkövér
 document.getElementById("bold").addEventListener("click", function () {
-  const selection = window.getSelection(); // Aktuális szövegkijelölés
+    const selection = window.getSelection();
 
-  if (selection.rangeCount > 0) {
-    const range = selection.getRangeAt(0); // Az első kijelölt tartomány
-    const parentNode = range.commonAncestorContainer.parentNode;
+    if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        const selectedText = range.toString(); // Kijelölt szöveg
+        if (selectedText.length === 0) return; // Ha nincs kijelölt szöveg, kilépünk
 
-    // Ellenőrizzük, hogy a kijelölt szöveg már félkövér-e
-    if (parentNode.tagName === "STRONG") {
-      // Ha igen, eltávolítjuk a félkövér formázást
-      const content = range.extractContents();
-      parentNode.parentNode.replaceChild(content, parentNode);
-    } else {
-      // Ha nem, alkalmazzuk a félkövér formázást
-      const strong = document.createElement("strong"); // Félkövér elem
-      const content = range.extractContents(); // Kijelölt szöveg eltávolítása a DOM-ból
-      strong.appendChild(content); // A tartalom hozzáadása a strong elemhez
-      range.insertNode(strong); // A strong elem visszahelyezése a tartomány helyére
+        const parentNode = range.commonAncestorContainer.parentNode;
 
-      // Visszaállítjuk a kijelölést
-      const newRange = document.createRange();
-      newRange.selectNodeContents(strong);
-      selection.removeAllRanges();
-      selection.addRange(newRange);
+        // Ellenőrizzük, hogy a szöveg már félkövér-e
+        if (parentNode.tagName === "STRONG") {
+            // Félkövér formázás eltávolítása
+            const content = document.createTextNode(selectedText);
+            parentNode.parentNode.replaceChild(content, parentNode);
+        } else {
+            // Félkövér formázás alkalmazása
+            const strong = document.createElement("strong");
+            strong.appendChild(document.createTextNode(selectedText));
+
+            // A meglévő szöveg helyettesítése a formázott szöveggel
+            range.deleteContents();
+            range.insertNode(strong);
+
+            // Új kijelölés beállítása
+            const newRange = document.createRange();
+            newRange.selectNodeContents(strong);
+            selection.removeAllRanges();
+            selection.addRange(newRange);
+        }
     }
-  }
+    strong.style.cssText = window.getComputedStyle(parentNode).cssText;
 });
+
+
 
 
 /***********************************EXPORT/SAVE GOMB *********************************************/
