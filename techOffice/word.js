@@ -1,6 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Ellenőrizzük, hogy létezik-e editor-container
-    const editorContainer = document.getElementById("editor-container");
+    const boldButton = document.getElementById("bold");
+    if (boldButton) {
+        boldButton.addEventListener("click", function () {
+            // Itt jön a bold funkció
+        });
+    } else {
+        console.error("A 'bold' gomb nem található az oldalon.");
+    }
+});
 
     if (editorContainer) {
         // Funkció, amely új szövegdobozokat hoz létre
