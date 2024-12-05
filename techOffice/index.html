@@ -18,7 +18,10 @@
             <option value="Times New Roman">Times New Roman</option>
             <option value="Courier New">Courier New</option>
             <option value="Verdana">Verdana</option>
+            <option value="Roboto">Roboto</option>
+            <option value="Pacifico">Pacifico</option>
         </select>
+        
 
         <!-- Betűméret -->
         <select id="font-size">
@@ -41,20 +44,24 @@
         </select>
 
         <!-- Lapozás és formázás -->
-        <button id="align-left"><i class="bi bi-arrow-left-square-fill"></i></button>
+        <button id="align-left"><i class="bi bi-floppy-fill"></i></button>
         <button id="align-center"><i class="bi bi-x-square-fill"></i></button>
-        <button id="align-right"><i class="bi bi-arrow-right-square-fill"></i></button>
-        <button id="bold"><i class="bi bi-type-bold"></i></button>
+        <button id="align-right"><i class="bi bi-file-earmark-plus-fill"></i></button>
+
+        <button id="ThemeButton" type="button"><i class="bi bi-brightness-high-fill"></i></button>
     </div>
 
 
     <div id="editor-container">
-        <div id="editor" class="editor-box" contenteditable="true">
-            <p contentEditable="true">Itt el is kezdhető a szerkesztés....</p>
+        <div id="editor" class="editor-box">
+            
         </div>
     </div>
 
 
-    <script src="word.js"></script>
-</body>S
+    <script src="word.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.0.0/docx.min.js"></script>
+
+
+</body>
 </html>
