@@ -68,9 +68,19 @@ a {
     position: absolute;
     top: 0;
     z-index: 10;
+    height: 10vh;
+    width: 15vh;
+    margin: 0;
+}
+
+#todo {
+    position: absolute;
+    top: 0;
     text-align: center;
-    height: 5vh;
-    width: 10vh;
+    z-index: 10;
+    height: 8vh;
+    width: 12vh;
     margin: 0;
     background-image: url(../img/postit-scrabble-to-do.jpg);
+    background-size: 12vh;
 }
