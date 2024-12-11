@@ -156,13 +156,7 @@ document.getElementById("align-left").addEventListener("click", function () {
 
         textContent += `\\f0\\fs${fontSize * 2} ${rtfFormattedText}\\par`;
 
-        if (style.fontWeight === 'bold') {
-            textContent = textContent.replace(rtfFormattedText, `\\b ${rtfFormattedText} \\b0`);
-        }
-
-        if (style.fontStyle === 'italic') {
-            textContent = textContent.replace(rtfFormattedText, `\\i ${rtfFormattedText} \\i0`);
-        }
+       
     });
 
     textContent += "}";  
