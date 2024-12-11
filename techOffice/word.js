@@ -210,8 +210,8 @@ document.getElementById("font-family").addEventListener("change",  ()=> {
 
 
 // Betűméret változtatása
-document.getElementById("font-size").addEventListener("change",  ()=> {
-    const selectedFontSize = this.value;
+document.getElementById("font-size").addEventListener("change", (event) => {
+    const selectedFontSize = event.target.value;
     const selection = window.getSelection();
 
     if (selection.rangeCount > 0) {
@@ -230,16 +230,16 @@ document.getElementById("font-size").addEventListener("change",  ()=> {
     }
 });
 
+
 // Betűtípus változtatása
-document.getElementById("font-family").addEventListener("change",  ()=> {
-    const selectedFont = this.value;
+document.getElementById("font-family").addEventListener("change", (event) => {
+    const selectedFont = event.target.value;
     const selection = window.getSelection();
 
     if (selection.rangeCount > 0) {
         const range = selection.getRangeAt(0);
         const span = document.createElement("span");
         span.style.fontFamily = selectedFont;
-
         const content = range.extractContents();
         span.appendChild(content);
         range.insertNode(span);
@@ -250,6 +250,7 @@ document.getElementById("font-family").addEventListener("change",  ()=> {
         selection.addRange(newRange);
     }
 });
+
 //Téma gomb
 
 const themebutton = document.querySelector("#ThemeButton")
