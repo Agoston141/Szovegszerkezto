@@ -271,6 +271,21 @@ function themechangebutton(){
           }
         currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
 
+=======
+        console.log(currentBackgroundColor);
+
+        if (currentBackgroundColor === "rgb(244, 244, 249)") { //fehér szín
+            body.style.backgroundColor = "rgb(29 29 29)"; // fekete szín
+
+            currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
+            console.log(currentBackgroundColor);
+            
+        } 
+        
+        if(currentBackgroundColor === "rgb(244, 244, 249)" ){
+            body.style.backgroundColor="rgb(244, 244, 249)";
+        }
+>>>>>>> 46921a6dcc79d34182540d367d862c27f22c21e5
 
     });
 
