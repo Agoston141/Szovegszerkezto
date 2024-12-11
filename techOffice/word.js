@@ -81,13 +81,22 @@ document.getElementById("align-center").addEventListener("click", function () {
         const editorElement = document.getElementById("editor");
 
         let firstChild = editorContainer.firstChild;
+        document.getElementById("align-center").addEventListener("click", function () {
+    const confirmation = confirm("Biztosan törölni szeretnéd az összes szöveget?");
+    if (confirmation) {
+        const editorContainer = document.getElementById("editor-container");
+        const editorElement = document.getElementById("editor");
+
+        // Töröljük az összes gyerekelemet, kivéve az editor-t
+        let firstChild = editorContainer.firstChild;
         while (firstChild) {
             if (firstChild !== editorElement) {
                 editorContainer.removeChild(firstChild);
             }
             firstChild = editorContainer.firstChild;
         }
-
+    }
+});
         const newEditorBox1 = document.createElement("div");
         newEditorBox1.classList.add("editor-box");
 
@@ -147,13 +156,7 @@ document.getElementById("align-left").addEventListener("click", function () {
 
         textContent += `\\f0\\fs${fontSize * 2} ${rtfFormattedText}\\par`;
 
-        if (style.fontWeight === 'bold') {
-            textContent = textContent.replace(rtfFormattedText, `\\b ${rtfFormattedText} \\b0`);
-        }
-
-        if (style.fontStyle === 'italic') {
-            textContent = textContent.replace(rtfFormattedText, `\\i ${rtfFormattedText} \\i0`);
-        }
+       
     });
 
     textContent += "}";  
@@ -258,6 +261,7 @@ function themechangebutton(){
         const editor = document.querySelector("p");
 
         let currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
+<<<<<<< HEAD
 
         if (body.classList.contains("light-mode")) {
             body.classList.replace("light-mode","dark-mode");
