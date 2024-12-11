@@ -70,13 +70,18 @@ document.getElementById("font-size").addEventListener("change",  ()=> {
 
 
 //Teljes szoveg törlese.
-document.getElementById("align-center").addEventListener("click", ()=> {
+document.getElementById("align-center").addEventListener("click", () => {
     const confirmation = confirm("Biztosan törölni szeretnéd az összes szöveget?");
     if (confirmation) {
         const editorContainer = document.getElementById("editor-container");
 
 
         const editorElement = document.getElementById("editor");
+
+        const paragraphs = editorContainer.querySelectorAll("p");
+        paragraphs.forEach(p => {
+            p.innerText = ""; // A szöveg törlése
+        });
 
         let firstChild = editorContainer.firstChild;
         document.getElementById("align-center").addEventListener("click", ()=> {
