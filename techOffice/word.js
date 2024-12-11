@@ -85,10 +85,9 @@ document.getElementById("align-center").addEventListener("click", function () {
     if (confirmation) {
         const editorContainer = document.getElementById("editor-container");
 
-        // Mentjük az id="editor" elemet, hogy ne törlődjön
+
         const editorElement = document.getElementById("editor");
 
-        // Töröljük az összes editor-box-ot, kivéve az id="editor" elemét
         let firstChild = editorContainer.firstChild;
         while (firstChild) {
             if (firstChild !== editorElement) {
@@ -97,8 +96,6 @@ document.getElementById("align-center").addEventListener("click", function () {
             firstChild = editorContainer.firstChild;
         }
 
-        // Az editor-container-be csak új editor-box-okat adunk hozzá
-        // Létrehozzuk az első új editor-box-ot
         const newEditorBox1 = document.createElement("div");
         newEditorBox1.classList.add("editor-box");
 
@@ -114,8 +111,6 @@ document.getElementById("align-center").addEventListener("click", function () {
 
         newEditorBox1.appendChild(newParagraph1);
         editorContainer.appendChild(newEditorBox1);
-
-        // Létrehozzuk a második új editor-box-ot
         const newEditorBox2 = document.createElement("div");
         newEditorBox2.classList.add("editor-box");
 
@@ -151,33 +146,25 @@ document.getElementById("align-left").addEventListener("click", function () {
     paragraphs.forEach(p => {
         let paragraphText = p.innerText;
 
-        // A szöveg minden karakterét Unicode szekvenciává alakítjuk
         let rtfFormattedText = convertToUnicodeRTF(paragraphText);
 
-        // Ellenőrizzük a formázásokat a szövegben (pl. félkövér, dőlt, betűméret)
         const style = window.getComputedStyle(p);
 
-        // Betűtípus és méret hozzáadása
         let fontFamily = style.fontFamily || 'Arial';
         let fontSize = parseInt(style.fontSize) || 12;
 
-        // Hozzáadjuk a formázott szöveget az RTF szintaxishoz
         textContent += `\\f0\\fs${fontSize * 2} ${rtfFormattedText}\\par`;
 
-        // Félkövér formázás
         if (style.fontWeight === 'bold') {
             textContent = textContent.replace(rtfFormattedText, `\\b ${rtfFormattedText} \\b0`);
         }
 
-        // Dőlt formázás
         if (style.fontStyle === 'italic') {
             textContent = textContent.replace(rtfFormattedText, `\\i ${rtfFormattedText} \\i0`);
         }
     });
 
-    textContent += "}";  // Befejező RTF szintaxis
-
-    // Megkérdezzük a fájl nevét
+    textContent += "}";  
     const fileName = prompt("\tA fájlod plain textként fog letölteni, amely az itt alkalmazott formázásokat nem alkalmazza\t \tAdd meg a fájl nevét:", "A dokumentumod neve...");
     if (fileName) {
         const blob = new Blob([textContent], { type: "application/rtf" });
@@ -191,14 +178,14 @@ document.getElementById("align-left").addEventListener("click", function () {
     }
 });
 
-// Függvény, amely a szöveget Unicode karakterekké alakítja RTF formátumban
+// Függvény amely a szöveget Unicode karakterekké alakítja RTF formátumban
 function convertToUnicodeRTF(text) {
     return text.split('').map(char => {
         const charCode = char.charCodeAt(0);
         if (charCode > 127) {
-            return `\\u${charCode} ?`; // Unicode karakterek RTF formátumban
+            return `\\u${charCode} ?`;
         } else {
-            return char;  // ASCII karakterek
+            return char;  
         }
     }).join('');
 }
@@ -210,8 +197,8 @@ function convertToUnicodeRTF(text) {
 /***************************FONT FAMILY *************************************************/
 
 document.getElementById("font-family").addEventListener("change", function () {
-    const selectedFont = this.value; // Kiválasztott betűtípus
-    const selection = window.getSelection(); // Kijelölt szöveg
+    const selectedFont = this.value; 
+    const selection = window.getSelection();
 
     if (selection.rangeCount > 0) {
         const range = selection.getRangeAt(0); // A kijelölt tartomány
@@ -219,8 +206,6 @@ document.getElementById("font-family").addEventListener("change", function () {
         span.style.fontFamily = selectedFont; // Betűtípus alkalmazása
         span.appendChild(range.extractContents()); // Tartalom másolása
         range.insertNode(span); // Visszahelyezés a DOM-ba
-
-        // Visszaállítjuk a kijelölést
         const newRange = document.createRange();
         newRange.selectNodeContents(span);
         selection.removeAllRanges();
@@ -228,7 +213,7 @@ document.getElementById("font-family").addEventListener("change", function () {
     }
 });
 
-// Félkövér formázás alkalmazása
+
 
 
 // Betűméret változtatása
