@@ -81,13 +81,22 @@ document.getElementById("align-center").addEventListener("click", function () {
         const editorElement = document.getElementById("editor");
 
         let firstChild = editorContainer.firstChild;
+        document.getElementById("align-center").addEventListener("click", function () {
+    const confirmation = confirm("Biztosan törölni szeretnéd az összes szöveget?");
+    if (confirmation) {
+        const editorContainer = document.getElementById("editor-container");
+        const editorElement = document.getElementById("editor");
+
+        // Töröljük az összes gyerekelemet, kivéve az editor-t
+        let firstChild = editorContainer.firstChild;
         while (firstChild) {
             if (firstChild !== editorElement) {
                 editorContainer.removeChild(firstChild);
             }
             firstChild = editorContainer.firstChild;
         }
-
+    }
+});
         const newEditorBox1 = document.createElement("div");
         newEditorBox1.classList.add("editor-box");
 
@@ -259,15 +268,17 @@ function themechangebutton(){
 
         let currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
         console.log(currentBackgroundColor);
-        if (currentBackgroundColor === "rgb(244, 244, 249)") {
-            body.style.backgroundColor = "rgb(29 29 29)";
+
+        if (currentBackgroundColor === "rgb(244, 244, 249)") { //fehér szín
+            body.style.backgroundColor = "rgb(29 29 29)"; // fekete szín
+
             currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
             console.log(currentBackgroundColor);
             
         } 
         
-        if(currentBackgroundColor === "rgb(29 29 29)" ){
-            body.style.backgroundColor="rgb(244, 244, 249)"
+        if(currentBackgroundColor === "rgb(244, 244, 249)" ){
+            body.style.backgroundColor="rgb(244, 244, 249)";
         }
 
     });
