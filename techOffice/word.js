@@ -258,3 +258,16 @@ document.getElementById("font-family").addEventListener("change", function () {
     }
 });
 
+<<<<<<< HEAD
+=======
+//Téma gomb
+const themebutton = document.querySelector("#ThemeButton"); // Első deklaráció
+
+// Ha újra hivatkozni kell rá, ne deklaráld újra:
+themebutton.addEventListener("click", () => {
+    const body = document.querySelector("body");
+    const toolbar = document.querySelector(".toolbar");
+    body.style.backgroundColor = "#1d1d1d";
+    toolbar.style.backgroundColor = "#534f4f";
+});
+>>>>>>> 482a051859457abf2b01bf27bbdc86c7ba140eb9
