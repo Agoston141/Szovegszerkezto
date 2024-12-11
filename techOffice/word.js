@@ -257,7 +257,6 @@ const themebutton = document.querySelector("#ThemeButton")
 themebutton.addEventListener("click", () => {
     const body = document.querySelector("body");
     const toolbar = document.querySelector(".toolbar");
-    const editor = document.querySelector("p");
     const saveButton= document.querySelector(".save")
     const DeleteButton= document.querySelector(".delete")
     const NewButton= document.querySelector(".New")
@@ -272,7 +271,7 @@ themebutton.addEventListener("click", () => {
     NewButton.classList.toggle("invert")
     themebutton.classList.toggle("invert")
 
-    //editor.classList.toggle("dark-mode")
+
 
 });
 
