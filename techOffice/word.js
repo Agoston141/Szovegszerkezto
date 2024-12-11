@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", ()=> {
     // Ellenőrizzük, hogy létezik-e editor-container
     const editorContainer = document.getElementById("editor-container");
 
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             newParagraph.innerText = "Új oldal tartalom...";
 
             // Kattintás esetén törli az alapértelmezett szöveget
-            newParagraph.addEventListener("click", function () {
+            newParagraph.addEventListener("click",  ()=> {
                 if (newParagraph.innerText === "Új oldal tartalom...") {
                     newParagraph.innerText = "";
                 }
@@ -27,15 +27,13 @@ document.addEventListener("DOMContentLoaded", function () {
         addNewEditorBox();
 
         // Az "align-right" gombra kattintáskor új szövegdoboz hozzáadása
-        document.getElementById("align-right").addEventListener("click", function () {
+        document.getElementById("align-right").addEventListener("click", ()=> {
             addNewEditorBox(); // Új szövegdoboz létrehozása
         });
     } else {
         console.error("Az editor-container elem nem található a fő oldalon.");
     }
 
-    //Theme
-    themechangebutton()
 
 });
 
@@ -50,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // FONT beállítások
-document.getElementById("font-size").addEventListener("change", function () {
+document.getElementById("font-size").addEventListener("change",  ()=> {
     const selectedFontSize = this.value;
     const selection = window.getSelection();
 
@@ -72,7 +70,7 @@ document.getElementById("font-size").addEventListener("change", function () {
 
 
 //Teljes szoveg törlese.
-document.getElementById("align-center").addEventListener("click", function () {
+document.getElementById("align-center").addEventListener("click", ()=> {
     const confirmation = confirm("Biztosan törölni szeretnéd az összes szöveget?");
     if (confirmation) {
         const editorContainer = document.getElementById("editor-container");
@@ -81,22 +79,22 @@ document.getElementById("align-center").addEventListener("click", function () {
         const editorElement = document.getElementById("editor");
 
         let firstChild = editorContainer.firstChild;
-        document.getElementById("align-center").addEventListener("click", function () {
-    const confirmation = confirm("Biztosan törölni szeretnéd az összes szöveget?");
-    if (confirmation) {
-        const editorContainer = document.getElementById("editor-container");
-        const editorElement = document.getElementById("editor");
+        document.getElementById("align-center").addEventListener("click", ()=> {
+            const confirmation = confirm("Biztosan törölni szeretnéd az összes szöveget?");
+            if (confirmation) {
+                const editorContainer = document.getElementById("editor-container");
+                const editorElement = document.getElementById("editor");
 
-        // Töröljük az összes gyerekelemet, kivéve az editor-t
-        let firstChild = editorContainer.firstChild;
-        while (firstChild) {
-            if (firstChild !== editorElement) {
-                editorContainer.removeChild(firstChild);
+                // Töröljük az összes gyerekelemet, kivéve az editor-t
+                let firstChild = editorContainer.firstChild;
+                while (firstChild) {
+                    if (firstChild !== editorElement) {
+                        editorContainer.removeChild(firstChild);
+                    }
+                    firstChild = editorContainer.firstChild;
+                }
             }
-            firstChild = editorContainer.firstChild;
-        }
-    }
-});
+        });
         const newEditorBox1 = document.createElement("div");
         newEditorBox1.classList.add("editor-box");
 
@@ -104,7 +102,7 @@ document.getElementById("align-center").addEventListener("click", function () {
         newParagraph1.contentEditable = "true";
         newParagraph1.innerText = "Új oldal tartalom...";
 
-        newParagraph1.addEventListener("click", function () {
+        newParagraph1.addEventListener("click",  ()=> {
             if (newParagraph1.innerText === "Új oldal tartalom...") {
                 newParagraph1.innerText = "";
             }
@@ -119,7 +117,7 @@ document.getElementById("align-center").addEventListener("click", function () {
         newParagraph2.contentEditable = "true";
         newParagraph2.innerText = "Új oldal tartalom...";
 
-        newParagraph2.addEventListener("click", function () {
+        newParagraph2.addEventListener("click",  ()=> {
             if (newParagraph2.innerText === "Új oldal tartalom...") {
                 newParagraph2.innerText = "";
             }
@@ -140,7 +138,7 @@ document.getElementById("align-center").addEventListener("click", function () {
 
 
 /********************Download engine - letöltő motor (txt) */
-document.getElementById("align-left").addEventListener("click", function () {
+document.getElementById("align-left").addEventListener("click",  ()=> {
     const paragraphs = document.querySelectorAll("#editor-container p");
     let textContent = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang1038{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}";  // Kezdő RTF szintaxis
 
@@ -156,10 +154,10 @@ document.getElementById("align-left").addEventListener("click", function () {
 
         textContent += `\\f0\\fs${fontSize * 2} ${rtfFormattedText}\\par`;
 
-       
+
     });
 
-    textContent += "}";  
+    textContent += "}";
     const fileName = prompt("\tA fájlod plain textként fog letölteni, amely az itt alkalmazott formázásokat nem alkalmazza\t \tAdd meg a fájl nevét:", "A dokumentumod neve...");
     if (fileName) {
         const blob = new Blob([textContent], { type: "application/rtf" });
@@ -180,7 +178,7 @@ function convertToUnicodeRTF(text) {
         if (charCode > 127) {
             return `\\u${charCode} ?`;
         } else {
-            return char;  
+            return char;
         }
     }).join('');
 }
@@ -191,8 +189,8 @@ function convertToUnicodeRTF(text) {
 
 /***************************FONT FAMILY *************************************************/
 
-document.getElementById("font-family").addEventListener("change", function () {
-    const selectedFont = this.value; 
+document.getElementById("font-family").addEventListener("change",  ()=> {
+    const selectedFont = this.value;
     const selection = window.getSelection();
 
     if (selection.rangeCount > 0) {
@@ -212,7 +210,7 @@ document.getElementById("font-family").addEventListener("change", function () {
 
 
 // Betűméret változtatása
-document.getElementById("font-size").addEventListener("change", function () {
+document.getElementById("font-size").addEventListener("change",  ()=> {
     const selectedFontSize = this.value;
     const selection = window.getSelection();
 
@@ -233,7 +231,7 @@ document.getElementById("font-size").addEventListener("change", function () {
 });
 
 // Betűtípus változtatása
-document.getElementById("font-family").addEventListener("change", function () {
+document.getElementById("font-family").addEventListener("change",  ()=> {
     const selectedFont = this.value;
     const selection = window.getSelection();
 
@@ -247,47 +245,29 @@ document.getElementById("font-family").addEventListener("change", function () {
         range.insertNode(span);
 
         const newRange = document.createRange();
-        newRange.selectNodeContents(span);  
+        newRange.selectNodeContents(span);
         selection.removeAllRanges();
         selection.addRange(newRange);
     }
 });
 //Téma gomb
-function themechangebutton(){
-    const themebutton = document.querySelector("#ThemeButton")
-    themebutton.addEventListener("click", () => {
-        const body = document.querySelector("body");
-        const toolbar = document.querySelector(".toolbar");
-        const editor = document.querySelector("p");
 
-        let currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
-<<<<<<< HEAD
+const themebutton = document.querySelector("#ThemeButton")
+themebutton.addEventListener("click", () => {
+    const body = document.querySelector("body");
+    const toolbar = document.querySelector(".toolbar");
+    const editor = document.querySelector("p");
 
-        if (body.classList.contains("light-mode")) {
-            body.classList.replace("light-mode","dark-mode");
-        } 
-        else if(body.classList.contains("dark-mode")){
-            body.classList.replace("dark-mode", "light-mode");
-          }
-        currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
+    body.classList.toggle("light-mode")
+    body.classList.toggle("dark-mode")
 
-=======
-        console.log(currentBackgroundColor);
+    
+    toolbar.classList.toggle("dark-mode")   
 
-        if (currentBackgroundColor === "rgb(244, 244, 249)") { //fehér szín
-            body.style.backgroundColor = "rgb(29 29 29)"; // fekete szín
+    editor.classList.toggle("dark-mode")
 
-            currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
-            console.log(currentBackgroundColor);
-            
-        } 
-        
-        if(currentBackgroundColor === "rgb(244, 244, 249)" ){
-            body.style.backgroundColor="rgb(244, 244, 249)";
-        }
->>>>>>> 46921a6dcc79d34182540d367d862c27f22c21e5
 
-    });
+});
 
-}
+
 
