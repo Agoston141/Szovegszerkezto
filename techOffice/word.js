@@ -1,13 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const boldButton = document.getElementById("bold");
-    if (boldButton) {
-        boldButton.addEventListener("click", function () {
-            // Itt jön a bold funkció
-        });
-    } else {
-        console.error("A 'bold' gomb nem található az oldalon.");
-    }
-});
+    // Ellenőrizzük, hogy létezik-e editor-container
+    const editorContainer = document.getElementById("editor-container");
 
     if (editorContainer) {
         // Funkció, amely új szövegdobozokat hoz létre
@@ -40,17 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         console.error("Az editor-container elem nem található a fő oldalon.");
     }
-    //Téma gomb
-const themebutton = document.querySelector("#ThemeButton")
 
-themebutton.addEventListener("click",()=>{
-    const body= document.querySelector("body")
-    const toolbar = document.querySelector(".toolbar")
-    const editor = document.querySelector("#editor")
-    body.style.backgroundColor="#1d1d1d"
-    toolbar.style.backgroundColor="#534f4f"
-    editor.style.backgroundColor="#746c6c"
-})
+    //Theme
+    themechangebutton()
 
 });
 
@@ -218,17 +203,28 @@ document.getElementById("font-family").addEventListener("change", function () {
         selection.addRange(newRange);
     }
 });
-
-<<<<<<< HEAD
-=======
 //Téma gomb
-const themebutton = document.querySelector("#ThemeButton"); // Első deklaráció
+function themechangebutton(){
+    const themebutton = document.querySelector("#ThemeButton")
+    themebutton.addEventListener("click", () => {
+        const body = document.querySelector("body");
+        const toolbar = document.querySelector(".toolbar");
+        const editor = document.querySelector("p");
 
-// Ha újra hivatkozni kell rá, ne deklaráld újra:
-themebutton.addEventListener("click", () => {
-    const body = document.querySelector("body");
-    const toolbar = document.querySelector(".toolbar");
-    body.style.backgroundColor = "#1d1d1d";
-    toolbar.style.backgroundColor = "#534f4f";
-});
->>>>>>> 482a051859457abf2b01bf27bbdc86c7ba140eb9
+        let currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
+        console.log(currentBackgroundColor);
+        if (currentBackgroundColor === "rgb(244, 244, 249)") {
+            body.style.backgroundColor = "rgb(29 29 29)";
+            currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
+            console.log(currentBackgroundColor);
+            
+        } 
+        
+        if(currentBackgroundColor === "rgb(29 29 29)" ){
+            body.style.backgroundColor="rgb(244, 244, 249)"
+        }
+
+    });
+
+}
+
