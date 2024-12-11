@@ -33,17 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         console.error("Az editor-container elem nem található a fő oldalon.");
     }
-    //Téma gomb
-const themebutton = document.querySelector("#ThemeButton")
 
-themebutton.addEventListener("click",()=>{
-    const body= document.querySelector("body")
-    const toolbar = document.querySelector(".toolbar")
-    const editor = document.querySelector(".editor")
-    body.style.backgroundColor="#1d1d1d"
-    toolbar.style.backgroundColor="#534f4f"
-    editor.style.backgroundColor="#746c6c"
-})
+    //Theme
+    themechangebutton()
 
 });
 
@@ -77,67 +69,6 @@ document.getElementById("font-size").addEventListener("change", function () {
         selection.addRange(newRange);
     }
 });
-
-
-//Teljes szoveg törlese.
-document.getElementById("align-center").addEventListener("click", function () {
-    const confirmation = confirm("Biztosan törölni szeretnéd az összes szöveget?");
-    if (confirmation) {
-        const editorContainer = document.getElementById("editor-container");
-
-        // Mentjük az id="editor" elemet, hogy ne törlődjön
-        const editorElement = document.getElementById("editor");
-
-        // Töröljük az összes editor-box-ot, kivéve az id="editor" elemét
-        let firstChild = editorContainer.firstChild;
-        while (firstChild) {
-            if (firstChild !== editorElement) {
-                editorContainer.removeChild(firstChild);
-            }
-            firstChild = editorContainer.firstChild;
-        }
-
-        // Az editor-container-be csak új editor-box-okat adunk hozzá
-        // Létrehozzuk az első új editor-box-ot
-        const newEditorBox1 = document.createElement("div");
-        newEditorBox1.classList.add("editor-box");
-
-        const newParagraph1 = document.createElement("p");
-        newParagraph1.contentEditable = "true";
-        newParagraph1.innerText = "Új oldal tartalom...";
-
-        newParagraph1.addEventListener("click", function () {
-            if (newParagraph1.innerText === "Új oldal tartalom...") {
-                newParagraph1.innerText = "";
-            }
-        });
-
-        newEditorBox1.appendChild(newParagraph1);
-        editorContainer.appendChild(newEditorBox1);
-
-        // Létrehozzuk a második új editor-box-ot
-        const newEditorBox2 = document.createElement("div");
-        newEditorBox2.classList.add("editor-box");
-
-        const newParagraph2 = document.createElement("p");
-        newParagraph2.contentEditable = "true";
-        newParagraph2.innerText = "Új oldal tartalom...";
-
-        newParagraph2.addEventListener("click", function () {
-            if (newParagraph2.innerText === "Új oldal tartalom...") {
-                newParagraph2.innerText = "";
-            }
-        });
-
-        newEditorBox2.appendChild(newParagraph2);
-        editorContainer.appendChild(newEditorBox2);
-    }
-});
-
-
-
-
-
 
 /***********************************EXPORT/SAVE GOMB *********************************************/
 /****************************************Ask the user what should be the name of the document. - kérdezze meg, milyen nevet szeretne a fájlnévnek.*******************************************************/
@@ -272,17 +203,28 @@ document.getElementById("font-family").addEventListener("change", function () {
         selection.addRange(newRange);
     }
 });
-
-<<<<<<< HEAD
-=======
 //Téma gomb
-const themebutton = document.querySelector("#ThemeButton"); // Első deklaráció
+function themechangebutton(){
+    const themebutton = document.querySelector("#ThemeButton")
+    themebutton.addEventListener("click", () => {
+        const body = document.querySelector("body");
+        const toolbar = document.querySelector(".toolbar");
+        const editor = document.querySelector("p");
 
-// Ha újra hivatkozni kell rá, ne deklaráld újra:
-themebutton.addEventListener("click", () => {
-    const body = document.querySelector("body");
-    const toolbar = document.querySelector(".toolbar");
-    body.style.backgroundColor = "#1d1d1d";
-    toolbar.style.backgroundColor = "#534f4f";
-});
->>>>>>> 482a051859457abf2b01bf27bbdc86c7ba140eb9
+        let currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
+        console.log(currentBackgroundColor);
+        if (currentBackgroundColor === "rgb(244, 244, 249)") {
+            body.style.backgroundColor = "rgb(29 29 29)";
+            currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
+            console.log(currentBackgroundColor);
+            
+        } 
+        
+        if(currentBackgroundColor === "rgb(29 29 29)" ){
+            body.style.backgroundColor="rgb(244, 244, 249)"
+        }
+
+    });
+
+}
+
