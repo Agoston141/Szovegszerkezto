@@ -258,17 +258,15 @@ function themechangebutton(){
         const editor = document.querySelector("p");
 
         let currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
-        console.log(currentBackgroundColor);
-        if (currentBackgroundColor === "rgb(244, 244, 249)") {
-            body.style.backgroundColor = "rgb(29 29 29)";
-            currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
-            console.log(currentBackgroundColor);
-            
+
+        if (body.classList.contains("light-mode")) {
+            body.classList.replace("light-mode","dark-mode");
         } 
-        
-        if(currentBackgroundColor === "rgb(29 29 29)" ){
-            body.style.backgroundColor="rgb(244, 244, 249)"
-        }
+        else if(body.classList.contains("dark-mode")){
+            body.classList.replace("dark-mode", "light-mode");
+          }
+        currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
+
 
     });
 
