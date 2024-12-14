@@ -139,7 +139,7 @@ document.getElementById("align-center").addEventListener("click", () => {
 
 
 /***********************************EXPORT/SAVE GOMB *********************************************/
-/****************************************Ask the user what should be the name of the document. - kérdezze meg, milyen nevet szeretne a fájlnévnek.*******************************************************/
+/* kérdezze meg, milyen nevet szeretne a fájlnévnek.*******************************************************/
 
 
 /********************Download engine - letöltő motor (txt) */
@@ -265,20 +265,67 @@ themebutton.addEventListener("click", () => {
     const saveButton= document.querySelector(".save")
     const DeleteButton= document.querySelector(".delete")
     const NewButton= document.querySelector(".New")
+    const boldButton = document.querySelector("#BoldButton")
+    const italicButton = document.querySelector("#ItalicButton")
 
     body.classList.toggle("light-mode")
     body.classList.toggle("dark-mode")
+    toolbar.classList.toggle("dark-mode")  
 
-    
-    toolbar.classList.toggle("dark-mode")   
     saveButton.classList.toggle("invert")
     DeleteButton.classList.toggle("invert")
     NewButton.classList.toggle("invert")
     themebutton.classList.toggle("invert")
-
+    boldButton.classList.toggle("invert")
+    italicButton.classList.toggle("invert")
 
 
 });
 
 
 
+//félövér Gomb
+
+const boldButton = document.querySelector("#BoldButton").addEventListener("click", () => {
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        const parentElement = range.startContainer.parentNode;
+
+        if (parentElement.classList.contains("boldMode")) {
+
+            const content = range.extractContents();
+            range.insertNode(content);
+            parentElement.classList.remove("boldMode"); 
+        } else {
+
+            const span = document.createElement("span");
+            span.classList.add("boldMode");
+            const content = range.extractContents();
+            span.appendChild(content);
+            range.insertNode(span);
+        }
+    }
+});
+
+//Dőlt Gomb
+const italicButton = document.querySelector("#ItalicButton").addEventListener("click", () => {
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        const parentElement = range.startContainer.parentNode;
+
+        if (parentElement.classList.contains("italicMode")) {
+
+            const content = range.extractContents();
+            range.insertNode(content);
+            parentElement.classList.remove("italicMode");
+        } else {
+            const span = document.createElement("span");
+            span.classList.add("italicMode");
+            const content = range.extractContents();
+            span.appendChild(content);
+            range.insertNode(span);
+        }
+    }
+})
