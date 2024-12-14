@@ -25,6 +25,7 @@ body {
   }
 .invert{
     filter: invert(1);
+    transition: filter 0.5s ease;
 }
 .toolbar select,
 .toolbar button {
