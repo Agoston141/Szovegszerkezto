@@ -217,6 +217,43 @@ body {
     font-size: 3vh; 
     vertical-align: middle; 
 }
+
 #ThemeButton:hover{
     transform: scale(1.2); 
+}
+
+#BoldButton{
+    font-size: 3vh;
+    padding: 0;
+    border: none;
+    background: none;
+    transition: transform 0.2s ease;
+    font-size: 3vh; 
+    vertical-align: middle;  
+}
+
+#BoldButton:hover{
+    transform: scale(1.2); 
+}
+
+.boldMode{
+    font-weight: bold;
+}
+
+#ItalicButton{
+    font-size: 3vh;
+    padding: 0;
+    border: none;
+    background: none;
+    transition: transform 0.2s ease;
+    font-size: 3vh; 
+    vertical-align: middle;  
+}
+
+#ItalicButton:hover{
+    transform: scale(1.2); 
+}
+
+.italicMode{
+    font-style: italic;
 }
