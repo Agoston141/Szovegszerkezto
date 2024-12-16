@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url(../img/slova-kraski-tekst-ateist.webp);
+    background-image: url(../img/welcome.jpg);
     padding: 0;
     display: flex;
     justify-content: center;
@@ -29,7 +29,7 @@ label {
 }
 
 button {
-    background-color: #48cd63;
+    background-color: #4080e6;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -39,7 +39,7 @@ button {
 }
 
 button:hover {
-    background-color: #d12f2f;
+    background-color: #08126e;
 }
 
 button:disabled {

@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('../img/todo.jpg');
+    background-image: url('../img/kék.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -66,8 +66,8 @@ h1 {
 #add-task-btn {
     background-image: url(../img/plus_9777344.png);
 
-    width: 35px;
-    height: 35px;
-    background-size: 35sspx;
+    width: 40px;
+    height: 40px;
+    background-size: 39px;
     border: none;
 }
