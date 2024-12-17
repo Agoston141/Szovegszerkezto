@@ -44,31 +44,6 @@ document.addEventListener("DOMContentLoaded", ()=> {
 /****************************************TOOLBAR*********************************************** */
 
 
-
-
-
-// FONT beállítások
-document.getElementById("font-size").addEventListener("change",  ()=> {
-    const selectedFontSize = this.value;
-    const selection = window.getSelection();
-
-    if (selection.rangeCount > 0) {
-        const range = selection.getRangeAt(0);
-        const span = document.createElement("span");
-        span.style.fontSize = selectedFontSize;
-
-        const content = range.extractContents();
-        span.appendChild(content);
-        range.insertNode(span);
-
-        const newRange = document.createRange();
-        newRange.selectNodeContents(span);
-        selection.removeAllRanges();
-        selection.addRange(newRange);
-    }
-});
-
-
 //Teljes szoveg törlese.
 document.getElementById("align-center").addEventListener("click", () => {
     const confirmation = confirm("Biztosan törölni szeretnéd az összes szöveget?");
@@ -190,28 +165,6 @@ function convertToUnicodeRTF(text) {
 
 
 //EHHEZ MAJD KELL EGY WORD/DOCX megoldás, egyelőre ez nincsen meg.
-
-
-/***************************FONT FAMILY *************************************************/
-
-document.getElementById("font-family").addEventListener("change",  ()=> {
-    const selectedFont = this.value;
-    const selection = window.getSelection();
-
-    if (selection.rangeCount > 0) {
-        const range = selection.getRangeAt(0); // A kijelölt tartomány
-        const span = document.createElement("span"); // Új <span> létrehozása
-        span.style.fontFamily = selectedFont; // Betűtípus alkalmazása
-        span.appendChild(range.extractContents()); // Tartalom másolása
-        range.insertNode(span); // Visszahelyezés a DOM-ba
-        const newRange = document.createRange();
-        newRange.selectNodeContents(span);
-        selection.removeAllRanges();
-        selection.addRange(newRange);
-    }
-});
-
-
 
 
 // Betűméret változtatása
