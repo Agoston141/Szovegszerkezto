@@ -231,8 +231,6 @@ themebutton.addEventListener("click", () => {
     themebutton.classList.toggle("invert")
     boldButton.classList.toggle("invert")
     italicButton.classList.toggle("invert")
-
-
 });
 
 
@@ -262,7 +260,8 @@ const boldButton = document.querySelector("#BoldButton").addEventListener("click
 });
 
 //Dőlt Gomb
-const italicButton = document.querySelector("#ItalicButton").addEventListener("click", () => {
+const italicButton = document.querySelector("#ItalicButton")
+italicButton.addEventListener("click", () => {
     const selection = window.getSelection();
     if (selection.rangeCount > 0) {
         const range = selection.getRangeAt(0);
