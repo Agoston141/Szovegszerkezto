@@ -210,7 +210,6 @@ document.getElementById("font-family").addEventListener("change", (event) => {
 });
 
 //Téma gomb
-
 const themebutton = document.querySelector("#ThemeButton")
 themebutton.addEventListener("click", () => {
     const body = document.querySelector("body");
