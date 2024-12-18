@@ -243,9 +243,6 @@ const boldButton = document.querySelector("#BoldButton").addEventListener("click
         const parentElement = range.startContainer.parentNode;
 
         if (parentElement.classList.contains("boldMode")) {
-
-            const content = range.extractContents();
-            range.insertNode(content);
             parentElement.classList.remove("boldMode"); 
         } else {
 
@@ -267,9 +264,6 @@ italicButton.addEventListener("click", () => {
         const parentElement = range.startContainer.parentNode;
 
         if (parentElement.classList.contains("italicMode")) {
-
-            const content = range.extractContents();
-            range.insertNode(content);
             parentElement.classList.remove("italicMode");
         } else {
             const span = document.createElement("span");
