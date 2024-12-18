@@ -236,7 +236,8 @@ themebutton.addEventListener("click", () => {
 
 //félövér Gomb
 
-const boldButton = document.querySelector("#BoldButton").addEventListener("click", () => {
+const boldButton = document.querySelector("#BoldButton")
+boldButton.addEventListener("click", () => {
     const selection = window.getSelection();
     if (selection.rangeCount > 0) {
         const range = selection.getRangeAt(0);
