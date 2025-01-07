@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
             newParagraph.contentEditable = "true";
             newParagraph.innerText = "Új oldal tartalom...";
 
-            // Kattintás esetén törli az alapértelmezett szöveget
+            
             newParagraph.addEventListener("click",  ()=> {
                 if (newParagraph.innerText === "Új oldal tartalom...") {
                     newParagraph.innerText = "";
@@ -23,12 +23,12 @@ document.addEventListener("DOMContentLoaded", ()=> {
             editorContainer.appendChild(newEditorBox);
         }
 
-        // Az oldal betöltésekor egy editor automatikusan létrejön
+        // létre kell jönnie ilyenkor egy új editornak, ha nem jön létre frissits megint
         addNewEditorBox();
 
         // Az "align-right" gombra kattintáskor új szövegdoboz hozzáadása
         document.getElementById("align-right").addEventListener("click", ()=> {
-            addNewEditorBox(); // Új szövegdoboz létrehozása
+            addNewEditorBox(); //  szövegdoboz létrehoz
         });
     } else {
         console.error("Az editor-container elem nem található a fő oldalon.");
